@@ -43,7 +43,7 @@
 	</form>
 	<?php 
 		}else{
-			include "./inc/error_alert.php";
+			include_once "./inc/error_alert.php";
 		}
 		$check_categoria=null;
 	?>

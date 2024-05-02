@@ -5,7 +5,7 @@
 
 <div class="container pb-6 pt-6">
 	<?php
-		include "./inc/btn_back.php";
+		include_once "./inc/btn_back.php";
 		require_once "./php/main.php";
 	
 		$id = (isset($_GET['product_id_up'])) ? $_GET['product_id_up'] : 0;
@@ -68,7 +68,7 @@
 	</div>
 	<?php 
 		}else{
-			include "./inc/error_alert.php";
+			include_once "./inc/error_alert.php";
 		}
 		$check_producto=null;
 	?>

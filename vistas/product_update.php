@@ -5,7 +5,7 @@
 
 <div class="container pb-6 pt-6">
 	<?php
-		include "./inc/btn_back.php";
+		include_once "./inc/btn_back.php";
 
 		require_once "./php/main.php";
 
@@ -84,7 +84,7 @@
 	</form>
 	<?php 
 		}else{
-			include "./inc/error_alert.php";
+			include_once "./inc/error_alert.php";
 		}
 		$check_producto=null;
 	?>
