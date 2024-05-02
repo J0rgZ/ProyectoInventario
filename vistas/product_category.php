@@ -25,12 +25,17 @@
             ?>
         </div>
         <div class="column">
-            <?php
-                $categoria_id = (isset($_GET['category_id'])) ? $_GET['category_id'] : 0;
+                <?php
+                    $categoria_id = (isset($_GET['category_id'])) ? $_GET['category_id'] : 0;
+                    
+                    /*== Verificando categoria ==*/
+                    $pdo = conexion();
+                    $statement = $pdo->prepare("SELECT * FROM categoria WHERE categoria_id = :categoria_id");
+                    $statement->bindParam(':categoria_id', $categoria_id, PDO::PARAM_INT);
+                    $statement->execute();
+                    $result = $statement->fetch(PDO::FETCH_ASSOC);
+                
 
-                /*== Verificando categoria ==*/
-                $check_categoria=conexion();
-                $check_categoria=$check_categoria->query("SELECT * FROM categoria WHERE categoria_id='$categoria_id'");
 
                 if($check_categoria->rowCount()>0){
 

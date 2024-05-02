@@ -6,14 +6,15 @@
 <div class="container pb-6 pt-6">
 	<?php
 		include "./inc/btn_back.php";
-
 		require_once "./php/main.php";
-
+	
 		$id = (isset($_GET['product_id_up'])) ? $_GET['product_id_up'] : 0;
-
 		/*== Verificando producto ==*/
-    	$check_producto=conexion();
-    	$check_producto=$check_producto->query("SELECT * FROM producto WHERE producto_id='$id'");
+		$pdo = conexion();
+		$statement = $pdo->prepare("SELECT * FROM producto WHERE producto_id = :id");
+		$statement->bindParam(':id', $id, PDO::PARAM_INT);
+		$statement->execute();
+		$result = $statement->fetch(PDO::FETCH_ASSOC);
 
         if($check_producto->rowCount()>0){
         	$datos=$check_producto->fetch();
