@@ -1,9 +1,6 @@
 <?php
+// Define una constante para la ruta de las vistas
 define('VISTAS_PATH', "./vistas/");
-
-function vistasPath() {
-    return VISTAS_PATH;
-}
 
 $INCLUDE_ALLOW_LIST = [
      "home.php",
@@ -12,10 +9,9 @@ $INCLUDE_ALLOW_LIST = [
      "settings.php"
 ];
 
-// Verificar si se ha proporcionado una vista en el parámetro GET
-$vista = isset($_GET["vista"]) ? $_GET["vista"] : "";
+$vista = $_GET["vista"];
 if (in_array($vista, $INCLUDE_ALLOW_LIST)) {
-   require_once vistasPath() . $vista . ".php";
+   require_once VISTAS_PATH . $vista . ".php";
 }
 require_once "./inc/session_start.php";
 ?>
@@ -29,26 +25,23 @@ require_once "./inc/session_start.php";
     </head>
     <body>
         <?php
-            // Si no se proporciona una vista o es una vista no permitida, cargar la vista de login por defecto
-            if($vista === "" || !in_array($vista, $INCLUDE_ALLOW_LIST)) {
-                $vista = "login";
+            if(!isset($_GET['vista']) || $_GET['vista']==""){
+                $_GET['vista']="login";
             }
-            
-            $vistas_path = vistasPath();
-            if(is_file($vistas_path . $vista . ".php") && $vista !== "login" && $vista !== "404"){
+            if(is_file(VISTAS_PATH . $_GET['vista'] . ".php") && $_GET['vista']!="login" && $_GET['vista']!="404"){
                 /*== Cerrar sesión ==*/
                 if((!isset($_SESSION['id']) || $_SESSION['id']=="") || (!isset($_SESSION['usuario']) || $_SESSION['usuario']=="")){
-                    require_once $vistas_path . "logout.php";
+                    require_once VISTAS_PATH . "logout.php";
                     exit();
                 }
                 require_once "./inc/navbar.php";
-                require_once $vistas_path . $vista . ".php";
+                require_once VISTAS_PATH . $_GET['vista'] . ".php";
                 require_once "./inc/script.php";
             } else {
-                if($vista === "login"){
-                    require_once $vistas_path . "login.php";
+                if($_GET['vista']=="login"){
+                    require_once VISTAS_PATH . "login.php";
                 } else {
-                    require_once $vistas_path . "404.php";
+                    require_once VISTAS_PATH . "404.php";
                 }
             }
         ?>
