@@ -1,6 +1,7 @@
 <?php
-// Define una constante para la ruta de las vistas
-define('VISTAS_PATH', "./vistas/");
+namespace Vistas;
+
+use const VISTAS_PATH;
 
 $INCLUDE_ALLOW_LIST = [
      "home.php",
@@ -10,9 +11,11 @@ $INCLUDE_ALLOW_LIST = [
 ];
 
 $vista = $_GET["vista"];
+
 if (in_array($vista, $INCLUDE_ALLOW_LIST)) {
-   require_once VISTAS_PATH . $vista . ".php";
+    require_once VISTAS_PATH . $vista . ".php";
 }
+
 require_once "./inc/session_start.php";
 ?>
 <!DOCTYPE html>
@@ -47,3 +50,4 @@ require_once "./inc/session_start.php";
         ?>
     </body>
 </html>
+
