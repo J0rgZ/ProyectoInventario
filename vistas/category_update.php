@@ -5,20 +5,17 @@
 
 <div class="container pb-6 pt-6">
 	<?php
-		include "./inc/btn_back.php";
-
+		include_once "./inc/btn_back.php";
 		require_once "./php/main.php";
-
 		$id = (isset($_GET['category_id_up'])) ? $_GET['category_id_up'] : 0;
 		$id=limpiar_cadena($id);
-
 		/*== Verificando categoria ==*/
-    	$check_categoria=conexion();
-    	$check_categoria=$check_categoria->query("SELECT * FROM categoria WHERE categoria_id='$id'");
-
-        if($check_categoria->rowCount()>0){
-        	$datos=$check_categoria->fetch();
+		$check_categoria=conexion();
+		$check_categoria=$check_categoria->query("SELECT * FROM categoria WHERE categoria_id='$id'");
+		if($check_categoria->rowCount()>0){
+			$datos=$check_categoria->fetch();
 	?>
+
 
 	<div class="form-rest mb-6 mt-6"></div>
 

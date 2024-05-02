@@ -15,13 +15,14 @@
 
     	$eliminar_producto->execute([":id"=>$product_id_del]);
 
-    	if($eliminar_producto->rowCount()==1){
+    	define('PRODUCTO_DIR', "./img/producto/");
 
-    		if(is_file("./img/producto/".$datos['producto_foto'])){
-    			chmod("./img/producto/".$datos['producto_foto'], 0777);
-				unlink("./img/producto/".$datos['producto_foto']);
-    		}
-
+		if ($eliminar_producto->rowCount() == 1) {
+			if (is_file(PRODUCTO_DIR . $datos['producto_foto'])) {
+				chmod(PRODUCTO_DIR . $datos['producto_foto'], 0777);
+				unlink(PRODUCTO_DIR . $datos['producto_foto']);
+			
+		}
 	        echo '
 	            <div class="notification is-info is-light">
 	                <strong>¡PRODUCTO ELIMINADO!</strong><br>

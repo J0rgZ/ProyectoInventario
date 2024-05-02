@@ -16,16 +16,14 @@
 
 <div class="container pb-6 pt-6">
 	<?php
-
-		include "./inc/btn_back.php";
-
-        /*== Verificando usuario ==*/
-    	$check_usuario=conexion();
-    	$check_usuario=$check_usuario->query("SELECT * FROM usuario WHERE usuario_id='$id'");
-
-        if($check_usuario->rowCount()>0){
-        	$datos=$check_usuario->fetch();
+		include_once "./inc/btn_back.php";
+		/*== Verificando usuario ==*/
+		$check_usuario=conexion();
+		$check_usuario=$check_usuario->query("SELECT * FROM usuario WHERE usuario_id='$id'");
+		if($check_usuario->rowCount()>0){
+			$datos=$check_usuario->fetch();
 	?>
+
 
 	<div class="form-rest mb-6 mt-6"></div>
 
@@ -104,7 +102,7 @@
 	</form>
 	<?php 
 		}else{
-			include "./inc/error_alert.php";
+			include_once "./inc/error_alert.php";
 		}
 		$check_usuario=null;
 	?>
