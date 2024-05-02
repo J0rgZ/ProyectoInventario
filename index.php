@@ -1,14 +1,12 @@
 <?php
-// Define una constante para la ruta de las vistas
+// Define a constant for the path to the views
 define('VISTAS_PATH', "./vistas/");
-
 $INCLUDE_ALLOW_LIST = [
      "home.php",
      "dashboard.php",
      "profile.php",
      "settings.php"
 ];
-
 $vista = $_GET["vista"];
 if (in_array($vista, $INCLUDE_ALLOW_LIST)) {
    require_once VISTAS_PATH . $vista . ".php";
