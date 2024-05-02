@@ -19,9 +19,12 @@
 
 		if ($eliminar_producto->rowCount() == 1) {
 			if (is_file(PRODUCTO_DIR . $datos['producto_foto'])) {
-				chmod(PRODUCTO_DIR . $datos['producto_foto'], 0777);
+				// Cambiar los permisos del archivo para que el propietario pueda leer y escribir
+				chmod(PRODUCTO_DIR . $datos['producto_foto'], 0644);
+		
+				// Eliminar el archivo
 				unlink(PRODUCTO_DIR . $datos['producto_foto']);
-			
+			}
 		}
 	        echo '
 	            <div class="notification is-info is-light">
