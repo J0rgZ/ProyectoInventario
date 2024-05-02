@@ -1,7 +1,7 @@
 <?php
 define('VISTAS_PATH', "./vistas/");
 
-function vistas_path() {
+function vistasPath() {
     return VISTAS_PATH;
 }
 
@@ -15,7 +15,7 @@ $INCLUDE_ALLOW_LIST = [
 // Verificar si se ha proporcionado una vista en el parámetro GET
 $vista = isset($_GET["vista"]) ? $_GET["vista"] : "";
 if (in_array($vista, $INCLUDE_ALLOW_LIST)) {
-   require_once vistas_path() . $vista . ".php";
+   require_once vistasPath() . $vista . ".php";
 }
 require_once "./inc/session_start.php";
 ?>
@@ -34,7 +34,7 @@ require_once "./inc/session_start.php";
                 $vista = "login";
             }
             
-            $vistas_path = vistas_path();
+            $vistas_path = vistasPath();
             if(is_file($vistas_path . $vista . ".php") && $vista !== "login" && $vista !== "404"){
                 /*== Cerrar sesión ==*/
                 if((!isset($_SESSION['id']) || $_SESSION['id']=="") || (!isset($_SESSION['usuario']) || $_SESSION['usuario']=="")){
