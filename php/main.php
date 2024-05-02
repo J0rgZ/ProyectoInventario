@@ -1,9 +1,18 @@
 <?php
-	
+
 	# Conexion a la base de datos #
 	function conexion(){
-		$pdo = new PDO('mysql:host=localhost ;dbname=pdo', 'root', '050505JK');
-		return $pdo;
+		$db_host = 'localhost';
+		$db_name = 'pdo';
+		$db_user = 'root';
+		$db_pass = getenv('DB_PASSWORD'); // Obtener la contraseña desde una variable de entorno
+
+		try {
+			$pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
+			return $pdo;
+		} catch (PDOException $e) {
+			die("Error de conexión: " . $e->getMessage());
+		}
 	}
 
 
