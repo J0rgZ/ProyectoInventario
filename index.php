@@ -8,15 +8,15 @@ $INCLUDE_ALLOW_LIST = [
 
 $vista = $_GET["vista"];
 if (in_array($vista, $INCLUDE_ALLOW_LIST)) {
-   include "./vistas/".$vista.".php";
+   require_once "./vistas/".$vista.".php";
 }
 
-require "./inc/session_start.php";
+require_once "./inc/session_start.php";
 ?>
 <!DOCTYPE html>
 <html>
     <head>
-        <?php include "./inc/head.php"; ?>
+        <?php include_once "./inc/head.php"; ?>
     </head>
     <body>
         <?php
@@ -27,18 +27,18 @@ require "./inc/session_start.php";
             if(is_file("./vistas/".$_GET['vista'].".php") && $_GET['vista']!="login" && $_GET['vista']!="404"){
                 /*== Cerrar sesion ==*/
                 if((!isset($_SESSION['id']) || $_SESSION['id']=="") || (!isset($_SESSION['usuario']) || $_SESSION['usuario']=="")){
-                    include "./vistas/logout.php";
+                    include_once "./vistas/logout.php";
                     exit();
                 }
 
-                include "./inc/navbar.php";
-                include "./vistas/".$_GET['vista'].".php";
-                include "./inc/script.php";
+                include_once "./inc/navbar.php";
+                include_once "./vistas/".$_GET['vista'].".php";
+                include_once "./inc/script.php";
             }else{
                 if($_GET['vista']=="login"){
-                    include "./vistas/login.php";
+                    include_once "./vistas/login.php";
                 }else{
-                    include "./vistas/404.php";
+                    include_once "./vistas/404.php";
                 }
             }
         ?>
