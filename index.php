@@ -1,8 +1,6 @@
 <?php
 namespace Vistas;
 
-use const VISTAS_PATH;
-
 $INCLUDE_ALLOW_LIST = [
      "home.php",
      "dashboard.php",
@@ -13,7 +11,7 @@ $INCLUDE_ALLOW_LIST = [
 $vista = $_GET["vista"];
 
 if (in_array($vista, $INCLUDE_ALLOW_LIST)) {
-    require_once VISTAS_PATH . $vista . ".php";
+    require_once "./vistas/" . $vista . ".php";
 }
 
 require_once "./inc/session_start.php";
@@ -31,20 +29,20 @@ require_once "./inc/session_start.php";
             if(!isset($_GET['vista']) || $_GET['vista']==""){
                 $_GET['vista']="login";
             }
-            if(is_file(VISTAS_PATH . $_GET['vista'] . ".php") && $_GET['vista']!="login" && $_GET['vista']!="404"){
+            if(is_file("./vistas/" . $_GET['vista'] . ".php") && $_GET['vista']!="login" && $_GET['vista']!="404"){
                 /*== Cerrar sesión ==*/
                 if((!isset($_SESSION['id']) || $_SESSION['id']=="") || (!isset($_SESSION['usuario']) || $_SESSION['usuario']=="")){
-                    require_once VISTAS_PATH . "logout.php";
+                    require_once "./vistas/logout.php";
                     exit();
                 }
                 require_once "./inc/navbar.php";
-                require_once VISTAS_PATH . $_GET['vista'] . ".php";
+                require_once "./vistas/" . $_GET['vista'] . ".php";
                 require_once "./inc/script.php";
             } else {
                 if($_GET['vista']=="login"){
-                    require_once VISTAS_PATH . "login.php";
+                    require_once "./vistas/login.php";
                 } else {
-                    require_once VISTAS_PATH . "404.php";
+                    require_once "./vistas/404.php";
                 }
             }
         ?>
