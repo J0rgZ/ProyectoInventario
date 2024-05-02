@@ -50,4 +50,3 @@ require_once "./inc/session_start.php";
         ?>
     </body>
 </html>
-
