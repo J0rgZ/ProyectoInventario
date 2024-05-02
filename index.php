@@ -1,5 +1,5 @@
 <?php
-// Definimos una constante para el directorio de las vistas
+// Define a constant for the directory of the views
 define('VISTAS_DIR', "./vistas/");
 
 $INCLUDE_ALLOW_LIST = [
